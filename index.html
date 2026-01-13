@@ -12,7 +12,7 @@
   <style>
     body {
       margin: 0;
-      background: #f2f1ee; /* warm architectural background */
+      background: ##ACBCDAFF; /* warm architectural background */
       overflow: hidden;
     }
 
@@ -30,12 +30,7 @@
     alt="Interactive 3D map of the Glendon Athletic Club"
 
     camera-controls
-    disable-pan
-
-    /* ISOMETRIC CAMERA (locked) */
-    min-camera-orbit="45deg 60deg 18m"
-    max-camera-orbit="45deg 60deg 18m"
-    camera-target="0m 0m 0m"
+    interaction-prompt="none"
 
     /* LIGHTING */
     environment-image="neutral"
@@ -45,9 +40,6 @@
     /* SHADOWS */
     shadow-intensity="0.35"
     shadow-softness="0.8"
-
-    /* QUALITY */
-    interaction-prompt="none"
   >
   </model-viewer>
 
