@@ -2,75 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University Gym Map</title>
-  
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>University Gym – Interactive Map</title>
+
+  <script type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+  </script>
 
   <style>
-    body { margin: 0; background: #ECE8E6; overflow: hidden; }
-    
+    body {
+      margin: 0;
+      background: #ECE8E6;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
     model-viewer {
       width: 100vw;
       height: 100vh;
-      --poster-color: transparent;
     }
 
-    /* Minimalist Red Hotspot */
+    /* Professional Red Dot Hotspot */
     .hotspot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 10px;
       border: 2px solid #ffffff;
       background: #e53935;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
       cursor: pointer;
       padding: 0;
     }
 
-    /* Clean, non-distracting label */
+    /* Label that stays small and clean */
     .annotation {
       background: #333333;
-      color: #ffffff;
+      color: white;
       padding: 5px 10px;
       border-radius: 4px;
-      font-family: 'Segoe UI', sans-serif;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: bold;
       position: absolute;
       transform: translate(18px, -10px);
       white-space: nowrap;
-      pointer-events: none;
     }
 
-    /* Hide until loaded to prevent "flicker" */
-    :not(:defined) > * { display: none; }
+    /* Prevents UI from showing before the model loads */
+    :not(:defined) > * {
+      display: none;
+    }
   </style>
 </head>
-<body>
 
-  <model-viewer 
+<body>
+  <model-viewer
     src="webtestmap1_compressed_compressed.glb"
+    alt="Interactive 3D map of the university gym"
     camera-controls
     enable-pan
-    shadow-intensity="1"
     exposure="1.2"
+    shadow-intensity="1"
     environment-image="neutral"
-
-    /* 🎯 THE PERFECT ANGLE */
-    /* 45deg = diagonal view, 55deg = looking down, 50m = wide view */
-    camera-orbit="45deg 55deg 50m" 
-    field-of-view="25deg" 
     
-    alt="3D University Gym Interactive Map">
+    /* 🎯 CAMERA FIX: Sets the wide angle and prevents it from starting too close */
+    camera-orbit="45deg 55deg 50m"
+    field-of-view="25deg"
+  >
 
-    <button class="hotspot" slot="hotspot-lobby" 
+    <button class="hotspot" 
+            slot="hotspot-lobby" 
             data-position="2.5m 0.5m -5.5m" 
             data-normal="0m 1m 0m">
       <div class="annotation">LOBBY</div>
     </button>
 
   </model-viewer>
-
 </body>
 </html>
