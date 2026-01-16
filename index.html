@@ -12,15 +12,49 @@
     body {
       margin: 0;
       background: #ECE8E6;
+      font-family: Arial, Helvetica, sans-serif;
     }
+
     model-viewer {
       width: 100vw;
       height: 100vh;
+    }
+
+    /* YOU ARE HERE LABEL */
+    .you-are-here {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .you-are-here span {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.85;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- UI Overlay -->
+  <div class="you-are-here">
+    📍 YOU ARE HERE
+    <span>VOUS ÊTES ICI</span>
+  </div>
+
+  <!-- 3D Model -->
   <model-viewer
     src="webtestmap1_compressed_compressed.glb"
     camera-controls
@@ -29,5 +63,6 @@
     shadow-intensity="0.3"
     alt="Interactive 3D map of the university gym">
   </model-viewer>
+
 </body>
 </html>
