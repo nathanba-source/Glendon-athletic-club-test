@@ -3,39 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University Gym – 3D View</title>
-
-  <script type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-  </script>
+  <title>University Gym – Interactive Map</title>
+  
+  <!-- Google Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
+    /* Fullscreen 3D viewer */
     body {
       margin: 0;
-      background: #ECE8E6;
+      background-color: #ECE8E6;
       overflow: hidden;
     }
+
     model-viewer {
       width: 100vw;
       height: 100vh;
+      display: block;
     }
   </style>
 </head>
-
 <body>
-  <model-viewer
-    src="webtestmap1_compressed_compressed.glb"
-    alt="3D map of the university gym"
-    camera-controls
-    enable-pan
-    exposure="1.2"
-    shadow-intensity="1"
-    environment-image="neutral"
-    
-    /* 🎯 WIDE VIEW CAMERA SETTINGS */
-    camera-orbit="45deg 55deg 55m"
-    field-of-view="25deg"
-  >
-  </model-viewer>
-</body>
-</html>
+
+  <model-viewer 
+    src="webtestmap1_compressed_compressed.glb" 
+    alt="Interactive 3D map of the university gym"
+    camera-controls 
+    auto-rotate
+    disable-pan
+    exposure="1"
+    shadow-int
