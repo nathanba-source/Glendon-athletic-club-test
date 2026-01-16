@@ -9,10 +9,14 @@
   </script>
 
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
       background: #ECE8E6;
       font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
     }
 
     model-viewer {
@@ -20,25 +24,27 @@
       height: 100vh;
     }
 
-    /* HOVERING BUBBLE */
+    /* 🔴 CRITICAL: FIXED + Z-INDEX */
     .you-are-here {
-      position: absolute;
-      top: 22%; /* adjust if needed to align with lobby */
+      position: fixed;
+      top: 22%;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 9999;
+
       background: rgba(0, 0, 0, 0.65);
       color: white;
-      padding: 10px 22px;
+      padding: 10px 24px;
       border-radius: 30px;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.6px;
-      border: 2px solid #e53935; /* red outline */
+      border: 2px solid #e53935;
+
       pointer-events: none;
       box-shadow: 0 6px 16px rgba(0,0,0,0.35);
-      animation: float 2.5s ease-in-out infinite;
-      text-align: center;
       white-space: nowrap;
+      animation: float 2.5s ease-in-out infinite;
     }
 
     .you-are-here span {
@@ -48,7 +54,6 @@
       margin-left: 8px;
     }
 
-    /* FLOATING EFFECT */
     @keyframes float {
       0%   { transform: translate(-50%, 0); }
       50%  { transform: translate(-50%, -8px); }
@@ -59,12 +64,11 @@
 
 <body>
 
-  <!-- YOU ARE HERE BUBBLE -->
+  <!-- ✅ UI ALWAYS ON TOP -->
   <div class="you-are-here">
     📍 YOU ARE HERE <span>| VOUS ÊTES ICI</span>
   </div>
 
-  <!-- 3D MODEL -->
   <model-viewer
     src="webtestmap1_compressed_compressed.glb"
     camera-controls
