@@ -13,67 +13,24 @@
       margin: 0;
       background: #ECE8E6;
       overflow: hidden;
-      font-family: Arial, sans-serif;
     }
     model-viewer {
       width: 100vw;
       height: 100vh;
-    }
-
-    /* Professional Red Dot Hotspot */
-    .hotspot {
-      width: 12px;
-      height: 12px;
-      border-radius: 10px;
-      border: 2px solid #ffffff;
-      background: #e53935;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      cursor: pointer;
-      padding: 0;
-    }
-
-    /* Label that stays small and clean */
-    .annotation {
-      background: #333333;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: bold;
-      position: absolute;
-      transform: translate(18px, -10px);
-      white-space: nowrap;
-    }
-
-    /* Prevents UI from showing before the model loads */
-    :not(:defined) > * {
-      display: none;
     }
   </style>
 </head>
 
 <body>
   <model-viewer
-    src="webtestmap1_compressed_compressed.glb"
+    src="webtestmap1_compressed.glb"
     alt="Interactive 3D map of the university gym"
+
     camera-controls
-    enable-pan
-    exposure="1.2"
-    shadow-intensity="1"
+    exposure="0.95"
+    shadow-intensity="0.3"
     environment-image="neutral"
-    
-    /* 🎯 CAMERA FIX: Sets the wide angle and prevents it from starting too close */
-    camera-orbit="45deg 55deg 50m"
-    field-of-view="25deg"
   >
-
-    <button class="hotspot" 
-            slot="hotspot-lobby" 
-            data-position="2.5m 0.5m -5.5m" 
-            data-normal="0m 1m 0m">
-      <div class="annotation">LOBBY</div>
-    </button>
-
   </model-viewer>
 </body>
 </html>
