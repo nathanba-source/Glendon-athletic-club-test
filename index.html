@@ -4,70 +4,48 @@
   <meta charset="UTF-8">
   <title>University Gym – Interactive Map</title>
 
-  <script type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-  </script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #ECE8E6;
-      font-family: Arial, Helvetica, sans-serif;
-      overflow: hidden;
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: #ECE8E6; font-family: Arial, sans-serif; overflow: hidden;
     }
 
     model-viewer {
-      width: 100vw;
-      height: 100vh;
+      width: 100vw; height: 100vh;
     }
 
-    /* 🔴 CRITICAL: FIXED + Z-INDEX */
-    .you-are-here {
-      position: fixed;
-      top: 22%;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-
-      background: rgba(0, 0, 0, 0.65);
+    /* This styles the 3D Hotspot */
+    .hotspot {
+      background: rgba(229, 57, 53, 0.9); /* Red background */
       color: white;
-      padding: 10px 24px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      border: 2px solid #e53935;
-
-      pointer-events: none;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
       white-space: nowrap;
-      animation: float 2.5s ease-in-out infinite;
+      pointer-events: none; /* Allows clicks to pass through to the map */
     }
 
-    .you-are-here span {
-      font-size: 12px;
-      font-weight: 400;
-      opacity: 0.9;
-      margin-left: 8px;
-    }
-
-    @keyframes float {
-      0%   { transform: translate(-50%, 0); }
-      50%  { transform: translate(-50%, -8px); }
-      100% { transform: translate(-50%, 0); }
+    /* Small triangle pointer under the label */
+    .hotspot::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(229, 57, 53, 0.9) transparent transparent transparent;
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ✅ UI ALWAYS ON TOP -->
-  <div class="you-are-here">
-    📍 YOU ARE HERE <span>| VOUS ÊTES ICI</span>
-  </div>
 
   <model-viewer
     src="webtestmap1_compressed_compressed.glb"
@@ -75,7 +53,16 @@
     disable-pan
     exposure="1"
     shadow-intensity="0.3"
+    camera-orbit="0deg 45deg 20m"
     alt="Interactive 3D map of the university gym">
+
+    <button class="hotspot" 
+            slot="hotspot-lobby" 
+            data-position="0.041m -0.5m -16.502m" 
+            data-normal="0m 1m 0m">
+      📍 YOU ARE HERE
+    </button>
+
   </model-viewer>
 
 </body>
