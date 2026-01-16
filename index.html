@@ -1,66 +1,76 @@
-<style>
-  /* 1. Remove the old floating UI if it's still in your HTML body */
-  /* 2. Style for the correct small red hotspot */
-  .hotspot {
-    width: 12px;
-    height: 12px;
-    border-radius: 10px;
-    border: 2px solid #fff;
-    background: #e53935;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    cursor: pointer;
-  }
-
-  .annotation {
-    background: #333;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: bold;
-    position: absolute;
-    transform: translate(15px, -10px);
-    white-space: nowrap;
-  }
-
-  /* Professional Header Overlay (The top left card) */
-  .interface-card {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    padding: 12px 18px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255,255,255,0.4);
-    pointer-events: none;
-  }
-</style>
-
-<div class="interface-card">
-  <h1 style="margin:0; font-size:16px; color:#333;">University Gym Center</h1>
-  <p style="margin:4px 0 0; font-size:11px; color:#e53935;">📍 You are in the <b>Main Lobby</b></p>
-</div>
-
-<model-viewer 
-  src="webtestmap1_compressed_compressed.glb"
-  camera-controls
-  enable-pan
-  shadow-intensity="1"
-  exposure="1.2"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Gym Map</title>
   
-  /* FIXED ANGLE: 55m distance creates that wide "Map View" from your photo */
-  camera-orbit="45deg 55deg 55m" 
-  field-of-view="30deg"
-  
-  alt="Interactive Gym Map">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-  <button class="hotspot" slot="hotspot-lobby" 
-          data-position="2.5m 0.5m -5.5m" 
-          data-normal="0m 1m 0m">
-    <div class="annotation">MAIN LOBBY</div>
-  </button>
+  <style>
+    body { margin: 0; background: #ECE8E6; overflow: hidden; }
+    
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+      --poster-color: transparent;
+    }
 
-</model-viewer>
+    /* Minimalist Red Hotspot */
+    .hotspot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      background: #e53935;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* Clean, non-distracting label */
+    .annotation {
+      background: #333333;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      position: absolute;
+      transform: translate(18px, -10px);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Hide until loaded to prevent "flicker" */
+    :not(:defined) > * { display: none; }
+  </style>
+</head>
+<body>
+
+  <model-viewer 
+    src="webtestmap1_compressed_compressed.glb"
+    camera-controls
+    enable-pan
+    shadow-intensity="1"
+    exposure="1.2"
+    environment-image="neutral"
+
+    /* 🎯 THE PERFECT ANGLE */
+    /* 45deg = diagonal view, 55deg = looking down, 50m = wide view */
+    camera-orbit="45deg 55deg 50m" 
+    field-of-view="25deg" 
+    
+    alt="3D University Gym Interactive Map">
+
+    <button class="hotspot" slot="hotspot-lobby" 
+            data-position="2.5m 0.5m -5.5m" 
+            data-normal="0m 1m 0m">
+      <div class="annotation">LOBBY</div>
+    </button>
+
+  </model-viewer>
+
+</body>
+</html>
