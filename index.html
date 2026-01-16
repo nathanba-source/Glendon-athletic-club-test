@@ -3,48 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>University Gym – Interactive Map</title>
-
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
-    html, body {
-      margin: 0; padding: 0; width: 100%; height: 100%;
-      background: #ECE8E6; font-family: Arial, sans-serif; overflow: hidden;
-    }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #ECE8E6; overflow: hidden; }
+    model-viewer { width: 100vw; height: 100vh; }
 
-    model-viewer {
-      width: 100vw; height: 100vh;
-    }
-
-    /* This styles the 3D Hotspot */
+    /* 🟢 THIS IS YOUR NEW PIN STYLE */
     .hotspot {
-      background: rgba(229, 57, 53, 0.9); /* Red background */
-      color: white;
-      padding: 6px 12px;
-      border-radius: 12px;
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 10px;
       border: none;
-      font-size: 11px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-      white-space: nowrap;
-      pointer-events: none; /* Allows clicks to pass through to the map */
+      background-color: #e53935;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      position: relative;
     }
 
-    /* Small triangle pointer under the label */
-    .hotspot::after {
-      content: "";
+    /* THE TEXT LABEL */
+    .annotation {
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      color: rgba(0, 0, 0, 0.8);
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
       position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: rgba(229, 57, 53, 0.9) transparent transparent transparent;
+      transform: translate(10px, -25px); /* Moves text slightly away from the dot */
+      white-space: nowrap;
     }
+
+    /* HIDE THE PIN UNTIL THE MODEL LOADS */
+    :not(:defined) > .hotspot { display: none; }
   </style>
 </head>
-
 <body>
 
   <model-viewer
@@ -53,14 +49,14 @@
     disable-pan
     exposure="1"
     shadow-intensity="0.3"
-    camera-orbit="0deg 45deg 20m"
-    alt="Interactive 3D map of the university gym">
+    camera-orbit="0deg 75deg 20m"
+    alt="Interactive 3D map">
 
     <button class="hotspot" 
             slot="hotspot-lobby" 
             data-position="0.041m -0.5m -16.502m" 
             data-normal="0m 1m 0m">
-      📍 YOU ARE HERE
+      <div class="annotation">📍 YOU ARE HERE</div>
     </button>
 
   </model-viewer>
