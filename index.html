@@ -2,61 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>University Gym – Interactive Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Gym | Interactive Map</title>
+  
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
-    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #ECE8E6; overflow: hidden; }
-    model-viewer { width: 100vw; height: 100vh; }
-
-    /* 🟢 THIS IS YOUR NEW PIN STYLE */
-    .hotspot {
-      display: block;
-      width: 12px;
-      height: 12px;
-      border-radius: 10px;
-      border: none;
-      background-color: #e53935;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      position: relative;
+    :root {
+      --brand-color: #e53935;
+      --glass: rgba(255, 255, 255, 0.8);
     }
 
-    /* THE TEXT LABEL */
-    .annotation {
-      background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-      color: rgba(0, 0, 0, 0.8);
-      display: block;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 8px;
+    body { margin: 0; background: #f4f4f4; font-family: 'Segoe UI', Roboto, sans-serif; }
+    
+    /* Smooth Loading State */
+    model-viewer {
+      width: 100vw;
+      height: 100vh;
+      --poster-color: transparent;
+    }
+
+    /* Professional Overlay Header */
+    .interface-overlay {
       position: absolute;
-      transform: translate(10px, -25px); /* Moves text slightly away from the dot */
-      white-space: nowrap;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      pointer-events: none;
     }
 
-    /* HIDE THE PIN UNTIL THE MODEL LOADS */
-    :not(:defined) > .hotspot { display: none; }
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      pointer-events: auto;
+    }
+
+    h1 { margin: 0; font-size: 18px; color: #333; letter-spacing: -0.5px; }
+    p { margin: 5px 0 0; font-size: 12px; color: #666; }
+
+    /* The Hotspot Design */
+    .hotspot {
+      background: var(--brand-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.2);
+      border: 2px solid white;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hotspot:hover { transform: scale(1.3); }
+
+    /* Modern Annotation Label */
+    .annotation {
+      background: #333;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      position: absolute;
+      transform: translate(15px, -50%);
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Hide until model loads */
+    :not(:defined) > * { display: none; }
   </style>
 </head>
 <body>
 
+  <div class="interface-overlay">
+    <div class="card">
+      <h1>University Gym Center</h1>
+      <p>📍 You are currently in the <b>Main Lobby</b></p>
+    </div>
+  </div>
+
   <model-viewer
     src="webtestmap1_compressed_compressed.glb"
     camera-controls
-    disable-pan
-    exposure="1"
-    shadow-intensity="0.3"
-    camera-orbit="0deg 75deg 20m"
-    alt="Interactive 3D map">
+    enable-pan
+    interpolation-decay="200"
+    shadow-intensity="1"
+    shadow-softness="1"
+    exposure="1.2"
+    environment-image="neutral"
+    camera-orbit="45deg 55deg 25m"
+    min-camera-orbit="auto auto 5m"
+    max-camera-orbit="auto auto 50m"
+    auto-rotate
+    rotation-speed="0.2"
+    alt="3D University Gym Map">
 
-    <button class="hotspot" 
-            slot="hotspot-lobby" 
+    <button class="hotspot" slot="hotspot-lobby" 
             data-position="0.041m -0.5m -16.502m" 
             data-normal="0m 1m 0m">
-      <div class="annotation">📍 YOU ARE HERE</div>
+      <div class="annotation">MAIN LOBBY</div>
     </button>
 
   </model-viewer>
