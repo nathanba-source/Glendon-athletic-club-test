@@ -3,18 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University Gym – Interactive Map</title>
-  
-  <!-- Google Model Viewer -->
+  <title>3D Model Viewer</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
   <style>
     body {
       margin: 0;
-      background-color: #ECE8E6;
       overflow: hidden;
     }
-
     model-viewer {
       width: 100vw;
       height: 100vh;
@@ -24,4 +19,12 @@
 </head>
 <body>
 
-  <model
+<model-viewer 
+    src="webtestmap1_compressed_compressed.glb" 
+    alt="3D model" 
+    camera-controls
+    auto-rotate>
+</model-viewer>
+
+</body>
+</html>
