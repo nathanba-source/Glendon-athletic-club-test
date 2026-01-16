@@ -20,41 +20,51 @@
       height: 100vh;
     }
 
-    /* YOU ARE HERE LABEL */
+    /* HOVERING BUBBLE */
     .you-are-here {
       position: absolute;
-      top: 18%;
+      top: 22%; /* adjust if needed to align with lobby */
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.65);
       color: white;
-      padding: 10px 16px;
-      border-radius: 20px;
+      padding: 10px 22px;
+      border-radius: 30px;
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
+      border: 2px solid #e53935; /* red outline */
       pointer-events: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      animation: float 2.5s ease-in-out infinite;
+      text-align: center;
+      white-space: nowrap;
     }
 
     .you-are-here span {
-      display: block;
       font-size: 12px;
       font-weight: 400;
-      opacity: 0.85;
+      opacity: 0.9;
+      margin-left: 8px;
+    }
+
+    /* FLOATING EFFECT */
+    @keyframes float {
+      0%   { transform: translate(-50%, 0); }
+      50%  { transform: translate(-50%, -8px); }
+      100% { transform: translate(-50%, 0); }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- UI Overlay -->
+  <!-- YOU ARE HERE BUBBLE -->
   <div class="you-are-here">
-    📍 YOU ARE HERE
-    <span>VOUS ÊTES ICI</span>
+    📍 YOU ARE HERE <span>| VOUS ÊTES ICI</span>
   </div>
 
-  <!-- 3D Model -->
+  <!-- 3D MODEL -->
   <model-viewer
     src="webtestmap1_compressed_compressed.glb"
     camera-controls
