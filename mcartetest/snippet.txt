@@ -1,0 +1,62 @@
+<model-viewer src="cartedugacv1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="2" shadow-softness="0.87">
+    <button class="Hotspot" slot="hotspot-2" data-position="-0.551538062727321m -2.3945470342935096m 16.539627028885956m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Lobby</div>
+    </button><button class="Hotspot" slot="hotspot-3" data-position="8.437275370193435m -1.0287922461393153m 16.72265748311171m" data-normal="0.00436433888409535m 0.9999904762277014m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Golf Court</div>
+    </button><button class="Hotspot" slot="hotspot-4" data-position="14.433459818907735m -1.05924774230175m 16.707232043377523m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Boxing room</div>
+    </button><button class="Hotspot" slot="hotspot-5" data-position="20.84727849002133m -1.0404507932719014m 16.967584193638768m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Streching room</div>
+    </button><button class="Hotspot" slot="hotspot-6" data-position="27.99132979393329m -1.0404507932719014m 16.696790888225205m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Spinning room</div>
+    </button><button class="Hotspot" slot="hotspot-7" data-position="-5.07776444161724m -1.8667741003567355m 0.5588579926922752m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">W.Locker room</div>
+    </button><button class="Hotspot" slot="hotspot-8" data-position="-5.568420021465271m -1.8128206135868652m -13.430809149171129m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">M. Locker room</div>
+    </button><button class="Hotspot" slot="hotspot-9" data-position="-22.755174169906574m -1.8819745803040462m -5.472320528105499m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Swimming Pool</div>
+    </button><button class="Hotspot" slot="hotspot-10" data-position="-9.938181479396764m 0.4684005389835306m 14.840629844557307m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">M.changing room</div>
+    </button><button class="Hotspot" slot="hotspot-11" data-position="-10.000326654578657m 0.4684005389835306m 19.782660721116677m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">W. changing room</div>
+    </button><button class="Hotspot" slot="hotspot-18" data-position="-17.500092505793585m -1.8787937421865735m -28.07412929130228m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Squash court</div>
+    </button><button class="Hotspot" slot="hotspot-19" data-position="-17.19936273412983m -2.6371510028838543m -64.4299211742421m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Basketball court.(outdoors)</div>
+    </button><button class="Hotspot" slot="hotspot-20" data-position="16.18306637402933m -1.8955074344638945m -3.700744943780854m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">weight room</div>
+    </button><button class="Hotspot" slot="hotspot-21" data-position="-2.013584774238617m -0.5874605795021197m 8.49744720902788m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Staires</div>
+    </button><button class="Hotspot" slot="hotspot-22" data-position="27.9540205609903m -0.013889892644726842m 3.7187076021023175m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Staires</div>
+    </button><button class="Hotspot" slot="hotspot-23" data-position="-23.98910027002954m -0.22358405590057373m -38.72637679230526m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Staires</div>
+    </button><button class="Hotspot" slot="hotspot-24" data-position="-5.122073287840596m -0.646717294120774m 23.73617787419897m" data-normal="0m 0m -1m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-25" data-position="4.292683097179765m -0.04763915898354365m 9.760455166444494m" data-normal="0m 0m 1m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-26" data-position="-0.8636878358647584m -0.4234281495119214m 12.07818862202113m" data-normal="0m 0m -1m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-27" data-position="3.5256768873030575m 0.07804520834029155m 12.034940629295292m" data-normal="0m 0m -1m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-28" data-position="26.807264354371004m 0.7026079548888222m 9.708457282536635m" data-normal="-1m 0m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-29" data-position="3.7091746067859175m -1.8867327462642436m -22.676032500427958m" data-normal="0m 1m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-30" data-position="4.585255523998518m -0.10444816683762292m -27.851612061000196m" data-normal="0m 0m 1m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-31" data-position="-0.3003090687561789m -0.569640291070856m -34.239141784905385m" data-normal="-1m 0m 0m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button><button class="Hotspot" slot="hotspot-32" data-position="-3.9884628289379407m -0.3947407652735033m -34.27596627002053m" data-normal="0.9998683814695312m -0.00017352022767615148m 0.016223120175563117m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Exit</div>
+    </button>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+    </div>
+</model-viewer>

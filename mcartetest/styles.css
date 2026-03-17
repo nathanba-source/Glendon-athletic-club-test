@@ -1,0 +1,577 @@
+:not(:defined) > * {
+  display: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+model-viewer {
+  width: 100%;
+  height: calc(100% - 48px); /* Account for top bar */
+  background-color: #FAF7F2;
+  position: absolute;
+  top: 48px;
+  left: 0;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: #FAF7F2; /* warm off-white */
+  color: #000;
+  overflow: hidden; /* Prevent scrolling underneath */
+}
+
+/* Top Bar */
+#top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: #E31837; /* Glendon Red */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 1000;
+}
+
+model-viewer {
+  background-color: transparent; /* Use body background */
+}
+
+.eye-toggle.hidden {
+  color: #e53e3e;
+}
+
+.Hotspot {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease, opacity 0.4s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 1; /* Default fully visible */
+  color: #333;
+}
+
+.Hotspot.angled-away {
+  opacity: 0.35;
+}
+
+.Hotspot.selected {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-color: #fff;
+}
+
+.Hotspot.selected .hotspot-number {
+  background: #8b4513; /* dark brown/maroon */
+}
+
+.hotspot-label, .you-are-here {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  margin-left: 0;
+  white-space: nowrap;
+  transition: max-width 0.3s ease, opacity 0.3s ease, margin-left 0.3s ease;
+}
+
+.Hotspot.selected .hotspot-label {
+  max-width: 200px; /* Arbitrary max width for expansion */
+  opacity: 1;
+  margin-left: 6px;
+  font-weight: 500;
+}
+
+/* Adjust so 'you-are-here' expands if selected AND has the class inside the DOM structure */
+.Hotspot.selected .you-are-here {
+  max-width: 150px;
+  opacity: 1;
+  padding: 4px 8px; /* Restoring default padding */
+}
+
+.hotspot-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.hotspot-marker.selected::after {
+  content: "You are here";
+  background: #e53e3e;
+  color: white;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.hotspot-icon {
+  font-size: 16px;
+}
+
+.hotspot-label {
+  font-weight: 700 !important;
+}
+
+.hotspot-number {
+  background: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.you-are-here {
+  background: #e53e3e; /* Standard red */
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.you-icon {
+  font-size: 12px;
+}
+
+.legend-pill {
+  background: #e53e3e;
+  color: white;
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  margin-left: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+.HotspotAnnotation {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 4px 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-size: 12px;
+  font-family: Futura, Helvetica Neue, sans-serif;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.Hotspot:hover .HotspotAnnotation {
+  opacity: 1;
+}
+
+
+.progress-bar {
+  display: block;
+  width: 33%;
+  height: 10%;
+  max-height: 2%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 25px;
+  box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.progress-bar.hide {
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.update-bar {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 0%;
+  height: 100%;
+  border-radius: 25px;
+  float: left;
+  transition: width 0.3s;
+}
+
+#ar-button {
+  background-image: url(ar_icon.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: 12px 50%;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  bottom: 16px;
+  padding: 0px 16px 0px 40px;
+  font-family: Roboto Regular, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  color:#4285f4;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  border: 1px solid #DADCE0;
+}
+
+#ar-button:active {
+  background-color: #E8EAED;
+}
+
+#ar-button:focus {
+  outline: none;
+}
+
+#ar-button:focus-visible {
+  outline: 1px solid #4285f4;
+}
+
+@keyframes circle {
+  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+model-viewer > #ar-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  animation: elongate 2s infinite ease-in-out alternate;
+  display: none;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+  display: block;
+}
+
+model-viewer > #ar-prompt > img {
+  animation: circle 4s linear infinite;
+}
+
+
+#glendon-logo {
+  position: fixed;
+  bottom: 10%; /* 10% from bottom */
+  right: 5%;   /* A bit more to the right */
+  width: 80px;
+  height: 80px;
+  opacity: 0.85;
+  z-index: 9999;
+  pointer-events: none; /* Does not interfere with map interaction */
+}
+
+#legend-panel.minimized {
+  max-height: 48px; /* Fit strictly to header */
+}
+
+#legend-panel.minimized .legend-content,
+#legend-panel.minimized .legend-search {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+
+.Hotspot.color-exit {
+  background: #e63946; /* Red */
+}
+.Hotspot.color-exit .hotspot-label,
+.Hotspot.color-exit .hotspot-icon {
+  color: white;
+}
+
+#legend-panel {
+  position: fixed;
+  top: 68px; /* Below the top bar (48px) + margin */
+  left: 20px;
+  width: 280px;
+  height: 420px;
+  max-height: 420px;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  border-radius: 12px;
+  color: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: max-height 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+
+#legend-panel.loading-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+.legend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#legend-title-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.minimize-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.minimize-text {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.collapse-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  transition: transform 0.3s ease;
+}
+
+#legend-panel.minimized .collapse-btn {
+  transform: rotate(180deg);
+}
+
+.legend-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #000;
+  font-weight: 600;
+}
+
+.collapse-btn {
+  cursor: pointer;
+  color: #888;
+}
+
+.legend-search {
+  width: auto;
+  padding: 10px 15px;
+  margin: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f0f0f0;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.legend-search::placeholder {
+  color: #888;
+}
+
+.legend-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 0 15px 15px 15px;
+}
+
+/* Slim Scrollbar Styling */
+.legend-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.legend-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.legend-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.legend-content::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.legend-category h3 {
+  margin: 20px 0 10px 0;
+  font-size: 11px;
+  color: #888;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+hr.divider {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 15px 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.legend-item:hover {
+  background: #f0f0f0;
+}
+
+.item-number, .hotspot-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.item-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.item-label {
+  flex: 1;
+  font-size: 14px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eye-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.eye-toggle:hover {
+  color: #000;
+}
+
+/* --- COLOR CODING --- */
+/* Unique colors for each room */
+.color-lobby { background-color: #004A8D !important; } /* Glendon Blue */
+.color-weight { background-color: #2E8B57 !important; } /* Sea Green */
+.color-pool { background-color: #00CED1 !important; } /* Dark Turquoise */
+.color-stretching { background-color: #D49F0F !important; } /* Glendon Gold */
+.color-spinning { background-color: #9370DB !important; } /* Medium Purple */
+.color-boxing { background-color: #FF8C00 !important; } /* Dark Orange */
+.color-golf { background-color: #8FBC8B !important; } /* Dark Sea Green */
+.color-squash { background-color: #4169E1 !important; } /* Royal Blue */
+.color-basketball { background-color: #DC143C !important; } /* Crimson */
+.color-m-changing { background-color: #4682B4 !important; } /* Steel Blue */
+.color-w-changing { background-color: #C71585 !important; } /* Medium Violet Red */
+.color-w-locker { background-color: #FF69B4 !important; } /* Hot Pink */
+.color-m-locker { background-color: #1E90FF !important; } /* Dodger Blue */
+
+/* These remain consistent */
+.color-stairs { background-color: #000000 !important; color: white !important; }
+.color-exit { background-color: #E31837 !important; color: white !important; }
+
+/* Ensure hotspot numbers have a white border to pop against their background */
+.hotspot-number {
+  border: 1.5px solid white;
+}
+
+/* Search and Eye Toggle states */
+.search-hidden, .eye-hidden {
+  display: none !important;
+}
+
+/* Exit Hotspots Override - Ensure no glassmorphism */
+.Hotspot.exit-hotspot {
+  background: #E31837 !important;
+  backdrop-filter: none !important;
+  border: 1px solid #E31837 !important;
+}
+.Hotspot.exit-hotspot .hotspot-label,
+.Hotspot.exit-hotspot .hotspot-icon {
+  color: white !important;
+}
+.Hotspot.exit-hotspot.selected {
+  background: white !important;
+  border-color: #E31837 !important;
+}
+.Hotspot.exit-hotspot.selected .hotspot-label,
+.Hotspot.exit-hotspot.selected .hotspot-icon {
+  color: #E31837 !important;
+}
